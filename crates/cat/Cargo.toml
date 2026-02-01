@@ -1,0 +1,13 @@
+[package]
+name = "cat"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+common = { workspace = true }
+lexopt = { workspace = true }

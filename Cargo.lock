@@ -3,6 +3,14 @@
 version = 3
 
 [[package]]
+name = "cat"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "lexopt",
+]
+
+[[package]]
 name = "cfg-if"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -35,7 +43,39 @@ dependencies = [
 ]
 
 [[package]]
+name = "head"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "lexopt",
+]
+
+[[package]]
 name = "lexopt"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9fa0e2a1fcbe2f6be6c42e342259976206b383122fc152e872795338b5a3f3a7"
+
+[[package]]
+name = "tac"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "lexopt",
+]
+
+[[package]]
+name = "tail"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "lexopt",
+]
+
+[[package]]
+name = "wc"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "lexopt",
+]
