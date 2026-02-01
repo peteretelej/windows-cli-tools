@@ -16,3 +16,4 @@ common = { path = "crates/common" }
 lexopt = "0.3"
 encoding_rs_io = "0.1"
 regex-lite = "0.1"
+tempfile = "3"
