@@ -14,10 +14,25 @@ enum Mode {
     Bytes(usize),
 }
 
+fn expand_dash_n(args: Vec<String>) -> Vec<String> {
+    let mut out = Vec::new();
+    for arg in args {
+        if arg.len() >= 2 && arg.starts_with('-') && arg[1..].bytes().all(|b| b.is_ascii_digit()) {
+            out.push("-n".to_string());
+            out.push(arg[1..].to_string());
+        } else {
+            out.push(arg);
+        }
+    }
+    out
+}
+
 fn parse_args() -> (Mode, Vec<String>) {
     let mut mode = Mode::Lines(10);
     let mut files = Vec::new();
-    let mut parser = lexopt::Parser::from_env();
+    let raw_args: Vec<String> = std::env::args().collect();
+    let expanded = expand_dash_n(raw_args[1..].to_vec());
+    let mut parser = lexopt::Parser::from_args(expanded);
 
     while let Some(arg) = parser
         .next()
@@ -183,6 +198,20 @@ mod tests {
         let mut out = Vec::new();
         tail_lines_buffered(make_reader(""), 10, &mut out).unwrap();
         assert!(out.is_empty());
+    }
+
+    #[test]
+    fn expand_dash_number() {
+        let args = vec!["-5".to_string(), "file.txt".to_string()];
+        let expanded = expand_dash_n(args);
+        assert_eq!(expanded, vec!["-n", "5", "file.txt"]);
+    }
+
+    #[test]
+    fn expand_dash_number_no_transform_flags() {
+        let args = vec!["-n".to_string(), "10".to_string()];
+        let expanded = expand_dash_n(args);
+        assert_eq!(expanded, vec!["-n", "10"]);
     }
 
     #[test]
