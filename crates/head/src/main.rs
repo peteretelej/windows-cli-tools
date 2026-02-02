@@ -84,10 +84,9 @@ fn head_lines(reader: impl BufRead, n: usize, out: &mut impl Write) -> io::Resul
 }
 
 fn head_bytes(reader: impl Read, n: usize, out: &mut impl Write) -> io::Result<()> {
-    let mut buf = vec![0u8; n];
-    let mut reader = reader.take(n as u64);
-    let bytes_read = reader.read(&mut buf)?;
-    out.write_all(&buf[..bytes_read])?;
+    let mut buf = Vec::new();
+    reader.take(n as u64).read_to_end(&mut buf)?;
+    out.write_all(&buf)?;
     Ok(())
 }
 

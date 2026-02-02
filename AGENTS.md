@@ -38,6 +38,14 @@ cargo clippy --workspace -- -D warnings
 
 Argument parsing: `lexopt` with match on `Short`/`Long`/`Value` variants. Help/version: `common::cli::print_help(TOOL, USAGE)` / `print_version(TOOL, VERSION)`. Fatal errors: `common::error::err(TOOL, msg)`. File input: `common::encoding::open_input(path)` or `open_input_or_stdin(opt)` returns `impl BufRead`. Broken pipe: caught and silently ignored in I/O loops. Grep uses `regex-lite` for pattern matching.
 
+## Testing
+
+Unit tests: inline `#[cfg(test)]` modules in each tool's `main.rs`, testing core logic via `Cursor`-based readers.
+
+Integration tests: `crates/tests-integration/` exercises compiled binaries via `std::process::Command`. Shared helpers in `tests/helpers.rs`; fixture files in `tests/fixtures/`.
+
+**Use table-driven tests** to reduce sprawl. Group related scenarios into a single `#[test]` function using `Case`/`StdinCase` structs from helpers, or inline `&[(&str, ...)]` slices iterated in a loop. Each tuple/struct carries a name for identification on failure. Reserve separate `#[test]` functions only for tests needing unique setup (tempdir, custom env, pipe chains).
+
 ## CI/CD
 
 CI (`ci.yml`): runs on `windows-latest` - fmt, clippy, test, plus 32-bit build check with Rust 1.75.0.

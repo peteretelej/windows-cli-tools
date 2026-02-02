@@ -16,6 +16,7 @@ jobs:
           components: rustfmt, clippy
       - run: cargo fmt --check
       - run: cargo clippy --workspace -- -D warnings
+      - run: cargo build --workspace
       - run: cargo test --workspace
 
   build-32bit:

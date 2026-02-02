@@ -1,0 +1,3 @@
+crates/tests-integration/tests/fixtures/** linguist-vendored
+crates/tests-integration/tests/fixtures/**/*.txt eol=lf
+crates/tests-integration/tests/fixtures/*.bin binary

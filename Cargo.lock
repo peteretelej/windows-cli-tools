@@ -28,6 +28,7 @@ version = "0.1.0"
 dependencies = [
  "encoding_rs_io",
  "lexopt",
+ "tempfile",
 ]
 
 [[package]]
@@ -176,6 +177,13 @@ dependencies = [
  "once_cell",
  "rustix",
  "windows-sys",
+]
+
+[[package]]
+name = "tests-integration"
+version = "0.1.0"
+dependencies = [
+ "tempfile",
 ]
 
 [[package]]

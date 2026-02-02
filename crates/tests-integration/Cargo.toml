@@ -1,16 +1,12 @@
 [package]
-name = "common"
+name = "tests-integration"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
-license.workspace = true
+publish = false
 
 [lints]
 workspace = true
-
-[dependencies]
-encoding_rs_io = { workspace = true }
-lexopt = { workspace = true }
 
 [dev-dependencies]
 tempfile = { workspace = true }
