@@ -1,8 +1,14 @@
 # windows-cli-tools
 
-Unix CLI tools for Windows. Native `.exe` files for `cmd.exe` and PowerShell, with no dependencies, no WSL, no MSYS2.
+Unix CLI tools (head, tail, cat, grep, wc and more) as native Windows .exe files - zero runtime dependencies.
 
-Handles UTF-16 files correctly (PowerShell's default encoding), with automatic BOM detection and transcoding.
+[![CI](https://img.shields.io/github/actions/workflow/status/peteretelej/windows-cli-tools/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/peteretelej/windows-cli-tools/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/peteretelej/windows-cli-tools?style=flat-square)](https://github.com/peteretelej/windows-cli-tools/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+
+Standalone `.exe` files that work in cmd, PowerShell, and any Windows terminal. Download, add to your PATH, and use them like you would on Linux or macOS. No installer, no WSL, no MSYS2.
+
+Supports Windows 7 and later. All tools read from stdin and support piping, just like their Unix counterparts. UTF-16 files are handled correctly (PowerShell's default encoding), with automatic BOM detection and transcoding.
 
 ## Tools
 
@@ -27,8 +33,8 @@ Looking for `tree`? See [peteretelej/tree](https://github.com/peteretelej/tree).
 
 Download the latest zip or individual `.exe` files from [Releases](https://github.com/peteretelej/windows-cli-tools/releases). Place the executables in a directory on your PATH.
 
-**x64 (recommended):** `windows-cli-tools-x64.zip`
-**32-bit / Windows 7:** `windows-cli-tools-32bit.zip`
+- **x64 (recommended):** `windows-cli-tools-x64.zip`
+- **32-bit (has Win7 Support):** `windows-cli-tools-32bit.zip`
 
 ### From source
 
@@ -50,6 +56,18 @@ which python                   # find executable on PATH
 yes | head -3                  # output "y" three times
 ```
 
+## Use with AI Agents
+
+These tools are useful for AI agents and coding assistants running on Windows. Most AI tools expect standard CLI commands like `head`, `grep`, and `cat` to be available. After installing and confirming the tools are accessible from your command prompt, add a line to your agent's system prompt or instructions:
+
+```
+The following CLI tools are available on this system: head, tail, cat, tac, grep, wc, tee, touch, which, yes. Use them for file and text operations.
+```
+
+> **Tip:** Git Bash for Windows also provides these commands, but agents often have trouble with it when switching between terminals or running inline commands. Native `.exe` files on PATH work reliably across cmd, PowerShell, and any terminal an agent might use.
+
+For a more complete toolkit, consider also installing [ripgrep](https://github.com/BurntSushi/ripgrep), [fd](https://github.com/sharkdp/fd), [jq](https://github.com/jqlang/jq), and [tree](https://github.com/peteretelej/tree) - all have prebuilt Windows binaries.
+
 ## Build from Source
 
 Requires [Rust](https://rustup.rs/) 1.75.0 or later.
@@ -61,6 +79,10 @@ cargo build --release --workspace
 ```
 
 Binaries are in `target/release/`.
+
+## Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines on building, testing, and submitting changes.
 
 ## License
 
