@@ -8,7 +8,21 @@ permissions:
   contents: write
 
 jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify tag matches Cargo.toml version
+        run: |
+          TAG="${GITHUB_REF#refs/tags/v}"
+          CARGO_VERSION=$(grep -m1 '^version' Cargo.toml | sed 's/.*"\(.*\)"/\1/')
+          if [ "$TAG" != "$CARGO_VERSION" ]; then
+            echo "::error::Tag v$TAG does not match Cargo.toml version $CARGO_VERSION"
+            exit 1
+          fi
+
   build:
+    needs: version-check
     runs-on: windows-latest
     strategy:
       matrix:
