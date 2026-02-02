@@ -74,15 +74,31 @@ Requires [Rust](https://rustup.rs/) 1.75.0 or later.
 
 ```
 git clone https://github.com/peteretelej/windows-cli-tools.git
+
 cd windows-cli-tools
+
 cargo build --release --workspace
 ```
 
 Binaries are in `target/release/`.
 
+For Windows 7 or 32-bit builds, use Rust 1.75.0 targeting i686 with static CRT linking. This does not change your default Rust toolchain. Run in PowerShell:
+
+```powershell
+rustup toolchain install 1.75.0 --target i686-pc-windows-msvc
+
+$env:RUSTFLAGS = "-C target-feature=+crt-static"
+
+cargo +1.75.0 build --release --workspace --target i686-pc-windows-msvc
+```
+
+Binaries are in `target/i686-pc-windows-msvc/release/`.
+
 ## Contributing
 
-Contributions are welcome! See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines on building, testing, and submitting changes.
+Contributions are welcome! 
+
+See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines on building, testing, and submitting changes.
 
 ## License
 
