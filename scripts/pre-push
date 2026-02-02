@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Pre-push hook: runs the same checks as CI before allowing a push.
+# Install: ln -sf ../../scripts/pre-push .git/hooks/pre-push
+
+set -e
+
+echo "Running pre-push checks..."
+
+echo "  cargo fmt --check"
+cargo fmt --check
+
+echo "  cargo clippy --workspace -- -D warnings"
+cargo clippy --workspace -- -D warnings
+
+echo "  cargo test --workspace"
+cargo test --workspace
+
+echo "All checks passed."

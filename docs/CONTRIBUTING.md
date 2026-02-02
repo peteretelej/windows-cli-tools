@@ -58,6 +58,18 @@ tempfile = { workspace = true }
 
 4. The workspace auto-discovers crates via `members = ["crates/*"]`, so no root manifest changes are needed.
 
+## Git Hooks
+
+A pre-push hook is provided in `scripts/pre-push` that runs the same checks as CI (fmt, clippy, test) before allowing a push. To install it:
+
+```
+# Unix / Git Bash
+ln -sf ../../scripts/pre-push .git/hooks/pre-push
+
+# PowerShell (run as admin, or with Developer Mode enabled)
+New-Item -ItemType SymbolicLink -Path .git\hooks\pre-push -Target ..\..\scripts\pre-push -Force
+```
+
 ## Code Style
 
 - `cargo fmt` for formatting (enforced in CI)
