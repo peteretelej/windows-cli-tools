@@ -26,6 +26,9 @@ jobs:
           title: Windows CLI Tools
           description: Unix CLI tools for Windows - drop-in .exe files for cmd.exe and PowerShell
           readme: true
+          theme: "@catppuccin/starlight"
+          theme_plugin: catppuccin
+          theme_options: '{"flavor":"mocha","accent":"blue"}'
 
   deploy:
     needs: build

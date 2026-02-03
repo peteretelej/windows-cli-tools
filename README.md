@@ -1,6 +1,6 @@
-# windows-cli-tools
+# Windows CLI Tools
 
-Unix CLI tools (head, tail, cat, grep, wc and more) as native Windows .exe files - zero runtime dependencies.
+Unix CLI commands (head, tail, cat, grep, wc and more) as native Windows .exe files - zero runtime dependencies.
 
 [![CI](https://img.shields.io/github/actions/workflow/status/peteretelej/windows-cli-tools/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/peteretelej/windows-cli-tools/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/peteretelej/windows-cli-tools?style=flat-square)](https://github.com/peteretelej/windows-cli-tools/releases)
@@ -61,7 +61,7 @@ yes | head -3                  # output "y" three times
 These tools are useful for AI agents and coding assistants running on Windows. Most AI tools expect standard CLI commands like `head`, `grep`, and `cat` to be available. After installing and confirming the tools are accessible from your command prompt, add a line to your agent's system prompt or instructions:
 
 ```
-The following CLI tools are available on this system: head, tail, cat, tac, grep, wc, tee, touch, which, yes. Use them for file and text operations.
+The following CLI tools are available on this system: head, tail, cat, grep, wc. They can be used for file and text operations if needed.
 ```
 
 > **Tip:** Git Bash for Windows also provides these commands, but agents often have trouble with it when switching between terminals or running inline commands. Native `.exe` files on PATH work reliably across cmd, PowerShell, and any terminal an agent might use.
